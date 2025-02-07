@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Figma - Controle e Automação</title>
+    <meta name="description" content="">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>      
+      
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./public/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./public/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./public/img/favicon-16x16.png">
+    <link rel="icon" href="./public/img/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="./public/img/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Vendor CSS Files -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+    <!-- Main CSS File -->
+    <link href="./public/css/main.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init({
+                publicKey: "Rdi7GmRS3Rb5_TOwN",
+            });
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById('myForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+                emailjs.sendForm('service_y5jul64', 'template_chy841b', '#myForm');
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="form-container">
+            <h2 class="mb-4 text-center">Cadastro de Currículo</h2>
+            <form id="curriculoForm" enctype="multipart/form-data">
+                <div class="form-group text-center">
+                    
+                    <img src="./public/img/OIP.jpg" alt="Foto de Perfil" class="profile-pic" id="profile-pic-preview">
+                </div>
+                <div class="form-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Digite seu telefone">
+                </div>
+                <div class="form-group">
+                    <label for="endereco">Endereço</label>
+                    <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Digite seu endereço">
+                </div>
+                <div class="form-group">
+                    <label for="experiencia">Experiência Profissional</label>
+                    <textarea class="form-control" id="experiencia" name="experiencia" rows="3" placeholder="Descreva sua experiência profissional"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="formacao">Formação Acadêmica</label>
+                    <textarea class="form-control" id="formacao" name="formacao" rows="3" placeholder="Descreva sua formação acadêmica"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="habilidades">Habilidades</label>
+                    <textarea class="form-control" id="habilidades" name="habilidades" rows="3" placeholder="Liste suas habilidades"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="curriculo">Currículo (PDF)</label>
+                    <input type="file" class="form-control-file" id="curriculo" name="curriculo" accept="application/pdf">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        // Função para desabilitar copiar e colar
+        function disableCopyPaste(input) {
+            input.addEventListener('copy', function(event) {
+                event.preventDefault();
+            });
+            input.addEventListener('paste', function(event) {
+                event.preventDefault();
+            });
+        }
+
+        // Aplicar a função a todos os campos de input e textarea
+        const inputs = document.querySelectorAll('input, textarea');
+        inputs.forEach(disableCopyPaste);
+
+        document.getElementById('curriculoForm').addEventListener('submit', function(event) {
+            // Previne o envio do formulário
+            event.preventDefault();
+
+            // Validações
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
+            const endereco = document.getElementById('endereco').value;
+            const experiencia = document.getElementById('experiencia').value;
+            const formacao = document.getElementById('formacao').value;
+            const habilidades = document.getElementById('habilidades').value;
+
+            // Regex para validação
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@(gmail\.com|hotmail\.com|outlook\.com|yahoo\.com)$/;
+            const telefoneRegex = /^\d{11}$/;
+            const textoRegex = /^[a-zA-ZÀ-ÿ\s]+$/;
+            const textareaRegex = /^[a-zA-ZÀ-ÿ0-9\s]+$/;
+
+            // Validação do nome
+            if (!textoRegex.test(nome)) {
+                alert('Nome inválido. Não deve conter números ou caracteres especiais.');
+                return;
+            }
+
+            // Validação do email
+            if (!emailRegex.test(email)) {
+                alert('Email inválido. Somente são aceitos emails do Gmail, Hotmail, Outlook e Yahoo.');
+                return;
+            }
+
+            // Validação do telefone
+            if (!telefoneRegex.test(telefone)) {
+                alert('Telefone inválido. Deve conter exatamente 11 dígitos.');
+                return;
+            }
+
+            // Validação das textareas
+            if (!textareaRegex.test(experiencia) || !textareaRegex.test(formacao) || !textareaRegex.test(habilidades)) {
+                alert('Experiência, Formação e Habilidades não devem conter caracteres especiais.');
+                return;
+            }
+
+            // Validação de campos vazios
+            if (!nome || !email || !telefone || !endereco || !experiencia || !formacao || !habilidades) {
+                alert('Todos os campos devem ser preenchidos.');
+                return;
+            }
+
+            // Se todas as validações passarem, submete o formulário
+            submission();
+        });
+
+        function submission() {
+            const formData = new FormData(document.getElementById('curriculoForm'));
+
+            fetch('./curriculo.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+                window.location.href = "https://www.figmacontrol.com.br";
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            });
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

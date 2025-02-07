@@ -1,0 +1,63 @@
+// Consulta SQL
+$sql = "SELECT id, ip, data FROM ip_visitantes";
+$result = $conn->query($sql);
+
+// Início da tabela com estilo CSS embutido
+echo '<div class="container mt-5">';
+echo '<style>
+        .table-container {
+            margin-top: 20px;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+        .table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .table tr:hover {
+            background-color: #ddd;
+        }
+      </style>';
+echo '<table class="table">';
+echo '<thead>';
+echo '<tr>';
+echo '<th>ID</th>';
+echo '<th>IP</th>';
+echo '<th>Data</th>';
+echo '</tr>';
+echo '</thead>';
+echo '<tbody>';
+
+// Verificar se há resultados
+if ($result->num_rows > 0) {
+    // Exibir dados de cada linha
+    while($row = $result->fetch_assoc()) {
+        echo '<tr>';
+        echo '<td>' . $row["id"] . '</td>';
+        echo '<td>' . $row["ip"] . '</td>';
+        echo '<td>' . $row["data"] . '</td>';
+        echo '</tr>';
+    }
+} else {
+    echo '<tr><td colspan="3">0 resultados</td></tr>';
+}
+
+// Fim da tabela
+echo '</tbody>';
+echo '</table>';
+echo '</div>';
+
+// Fechar conexão
+$conn->close();

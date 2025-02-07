@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Figma - Controle e Automação</title>
+    <meta name="description" content="">
+    <script>
+        let myIpAdress = ''
+        // Função para obter o IP do visitante e enviar para ip.php
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                console.log('IP do Visitante:', data.ip);
+                myIpAdress = data.ip
+                // Enviar o IP para ip.php
+                fetch('https://www.figmacontrol.com.br/ip.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ip: myIpAdress })
+                })
+                    .catch(error => {
+                        console.error('Erro ao enviar IP para o servidor:', error);
+                    });
+            })
+            .catch(error => {
+                console.error('Erro ao obter o IP:', error);
+                document.getElementById('ip').textContent = 'IP: Não foi possível obter o IP';
+            });
+
+    </script>
+  
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./public/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./public/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./public/img/favicon-16x16.png">
+    <link rel="icon" href="./public/img/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="./public/img/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Vendor CSS Files -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Main CSS File -->
+    <link href="./public/css/main.css" rel="stylesheet">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init({
+                publicKey: "Rdi7GmRS3Rb5_TOwN",
+            });
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById('myForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+                // these IDs from the previous steps
+                emailjs.sendForm('service_y5jul64', 'template_chy841b', '#myForm');
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="col-1"></div>
+        <h2 class="text-center">Registro de Currículo</h2>
+        <form action="enviar_curriculo.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="nome">Nome Completo:</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="telefone">Telefone:</label>
+                <input type="tel" class="form-control" id="telefone" name="telefone" required>
+            </div>
+            <div class="form-group">
+                <label for="endereco">Endereço:</label>
+                <input type="text" class="form-control" id="endereco" name="endereco" required>
+            </div>
+            <div class="form-group">
+                <label for="cidade">Cidade:</label>
+                <input type="text" class="form-control" id="cidade" name="cidade" required>
+            </div>
+            <div class="form-group">
+                <label for="estado">Estado:</label>
+                <input type="text" class="form-control" id="estado" name="estado" required>
+            </div>
+            <div class="form-group">
+                <label for="cep">CEP:</label>
+                <input type="text" class="form-control" id="cep" name="cep" required>
+            </div>
+            <div class="form-group">
+                <label for="formacao">Formação Acadêmica:</label>
+                <textarea class="form-control" id="formacao" name="formacao" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="experiencia">Experiência Profissional:</label>
+                <textarea class="form-control" id="experiencia" name="experiencia" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="habilidades">Habilidades:</label>
+                <textarea class="form-control" id="habilidades" name="habilidades" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="curriculo">Anexar Currículo (PDF):</label>
+                <input type="file" class="form-control-file" id="curriculo" name="curriculo" accept=".pdf" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Enviar Currículo</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="footer dark-background">
+        <div class="container footer-top">
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6 footer-about">
+                    <a href="index.html" class="logo d-flex align-items-center">
+                        <span class="sitename">Figma - Controle e Automação</span>
+                    </a>
+                    <div class="footer-contact pt-3">
+                        <p><strong>Phone:</strong> <i class="fa-brands fa-whatsapp"></i> <span>fale com um técnico
+                                agora<a href="http://wa.me/5511970777140" target="_blank"> - click aqui -</a></span></p>
+                        <p><strong>Email:</strong> <span>contato@figmacontrol.com.br</span></p>
+                        <p><strong>CNPJ:</strong> <span>58.046.687/0001-86</span></p>
+                        <p><strong>TRABALHE CONOSCO: Envie seu curriculo para <a
+                                    href="mailto:contato@figmacontrol.com.br">contato@figmacontrol.com.br</a></strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container copyright text-center mt-4">
+            <p>© <span>Copyright</span> <strong class="px-1 sitename">Figma - Controle e Automação</strong> <span>Todos
+                    os direitos reservados</span></p>
+        </div>
+    </footer>
+
+    <!-- Scripts do Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
