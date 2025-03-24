@@ -239,6 +239,7 @@
   <!-- Main CSS File -->
   <link href="./public/css/main.css" rel="stylesheet">
 
+  <!-- emailjs -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script type="text/javascript">
     (function () {
@@ -248,15 +249,7 @@
       });
     })();
   </script>
-  <script type="text/javascript">
-    window.onload = function () {
-      document.getElementById('myForm').addEventListener('submit', function (event) {
-        event.preventDefault();
-        // these IDs from the previous steps
-        emailjs.sendForm('service_y5jul64', 'template_chy841b', '#myForm');
-      });
-    }
-  </script>
+  
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11539231006"></script>
 <script>
@@ -468,9 +461,22 @@
               </div>
 
             </form>
+            <script type="text/javascript">
+              window.onload = function () {
+                document.getElementById('myForm').addEventListener('submit', function (event) {
+                  event.preventDefault();
+                  // these IDs from the previous steps
+                  if (confirm('Você tem certeza que deseja enviar o formulário?')) {
+                    emailjs.sendForm('service_y5jul64', 'template_chy841b', '#myForm');
+                    alert('Formulário enviado com sucesso!');
+                    document.getElementById('myForm').reset();
+                  }                  
+                });
+              }
+            </script>
             <script> function validarCNPJ(cnpj) { cnpj = cnpj.replace(/[^\d]+/g, ''); if (cnpj.length !== 14) return false; if (/^(\d)\1+$/.test(cnpj)) return false; let tamanho = cnpj.length - 2; let numeros = cnpj.substring(0, tamanho); let digitos = cnpj.substring(tamanho); let soma = 0; let pos = tamanho - 7; for (let i = tamanho; i >= 1; i--) { soma += numeros.charAt(tamanho - i) * pos--; if (pos < 2) pos = 9; } let resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11); if (resultado != digitos.charAt(0)) return false; tamanho = tamanho + 1; numeros = cnpj.substring(0, tamanho); soma = 0; pos = tamanho - 7; for (let i = tamanho; i >= 1; i--) { soma += numeros.charAt(tamanho - i) * pos--; if (pos < 2) pos = 9; } resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11); if (resultado != digitos.charAt(1)) return false; return true; } document.getElementById('cnpjForm').addEventListener('submit', function (event) { event.preventDefault(); const cnpj = document.getElementById('cnpj').value; if (validarCNPJ(cnpj)) { alert('CNPJ válido!'); } else { alert('CNPJ inválido. Por favor, verifique e tente novamente.'); } }); document.getElementById('cnpj').addEventListener('input', function (event) { this.value = this.value.replace(/\D/g, '').replace(/^(\d{2})(\d)/, '$1.$2').replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3').replace(/\.(\d{3})(\d)/, '.$1/$2').replace(/(\d{4})(\d)/, '$1-$2'); }); </script>
             <script> document.getElementById('telefone').addEventListener('input', function (event) { this.value = this.value.replace(/\D/g, '').slice(0, 11); }); </script>
-            <script> document.getElementById('myForm').addEventListener('submit', function (event) { event.preventDefault(); if (confirm('Você tem certeza que deseja enviar o formulário?')) { this.submit(); } }); </script>
+            <!-- <script> document.getElementById('myForm').addEventListener('submit', function (event) { event.preventDefault(); if (confirm('Você tem certeza que deseja enviar o formulário?')) { this.submit(); } }); </script> -->
 
           </div><!-- End Quote Form -->
 
