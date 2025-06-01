@@ -39,6 +39,195 @@
   --contrast-color: #ffffff;
 }
 
+/* Efeito de LEDs */
+@keyframes ledPulse {
+  0% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0.3; transform: scale(1); }
+}
+
+.hero::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle at 10% 10%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 30% 20%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 50% 15%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 70% 25%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 90% 10%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 20% 40%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 40% 50%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 60% 45%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 80% 55%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 15% 75%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 35% 85%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 55% 80%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 75% 90%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 95% 85%, var(--accent-color) 2px, transparent 2px);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.hero::before {
+  animation: ledPulse1 2s infinite;
+}
+
+.hero::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle at 25% 15%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 45% 25%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 65% 20%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 85% 30%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 30% 60%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 50% 65%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 70% 70%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 25% 95%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 45% 90%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 65% 95%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 85% 85%, var(--accent-color) 2px, transparent 2px);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  animation: ledPulse2 2.5s infinite;
+}
+
+@keyframes ledPulse1 {
+  0% { opacity: 0.3; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-5px); }
+  100% { opacity: 0.3; transform: translateY(0); }
+}
+
+@keyframes ledPulse2 {
+  0% { opacity: 0.3; transform: translateX(0); }
+  50% { opacity: 1; transform: translateX(5px); }
+  100% { opacity: 0.3; transform: translateX(0); }
+}
+
+/* Fórmulas matemáticas */
+.hero::after {
+  content: '∫ ∂x/∂t dt';
+  font-size: 24px;
+  color: var(--accent-color);
+  position: fixed;
+  top: 15%;
+  left: 15%;
+  opacity: 0.7;
+  animation: formulaFloat1 3s infinite;
+}
+
+.hero::before {
+  content: '∑(x²) = ∫f(x)dx';
+  font-size: 20px;
+  color: var(--accent-color);
+  position: fixed;
+  top: 25%;
+  right: 20%;
+  opacity: 0.7;
+  animation: formulaFloat2 4s infinite;
+}
+
+.hero .info::before {
+  content: 'dy/dx = lim[h→0] Δy/Δx';
+  font-size: 22px;
+  color: var(--accent-color);
+  position: fixed;
+  bottom: 30%;
+  left: 30%;
+  opacity: 0.7;
+  animation: formulaFloat3 3.5s infinite;
+}
+
+.hero .info::after {
+  content: '∮ E·dl = -dΦ/dt';
+  font-size: 26px;
+  color: var(--accent-color);
+  position: fixed;
+  top: 40%;
+  right: 35%;
+  opacity: 0.7;
+  animation: formulaFloat4 4.5s infinite;
+}
+
+@keyframes formulaFloat1 {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0.3; }
+  50% { transform: translate(10px, -10px) rotate(5deg); opacity: 0.7; }
+  100% { transform: translate(0, 0) rotate(0deg); opacity: 0.3; }
+}
+
+@keyframes formulaFloat2 {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0.3; }
+  50% { transform: translate(-10px, -15px) rotate(-5deg); opacity: 0.7; }
+  100% { transform: translate(0, 0) rotate(0deg); opacity: 0.3; }
+}
+
+@keyframes formulaFloat3 {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  50% { transform: translate(15px, 10px) scale(1.1); opacity: 0.7; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+}
+
+@keyframes formulaFloat4 {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.3; }
+  50% { transform: translate(-5px, -5px) scale(1.1) rotate(3deg); opacity: 0.7; }
+  100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.3; }
+}
+
+body.scrolled .hero::before,
+body.scrolled .hero::after,
+body.scrolled .hero .info::before,
+body.scrolled .hero .info::after {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  pointer-events: none;
+}
+
+body.scrolled .hero::before {
+  opacity: 0;
+}
+
+/* Efeito do botão Vamos lá */
+.btn-get-started {
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.btn-get-started:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--accent-color);
+}
+
+.btn-get-started::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+  transform: rotate(45deg);
+  animation: glowEffect 2s infinite;
+}
+
+@keyframes glowEffect {
+  0% {
+    transform: rotate(45deg) translateX(-100%);
+  }
+  100% {
+    transform: rotate(45deg) translateX(100%);
+  }
+}
+
 /* Smooth scroll */
 :root {
   scroll-behavior: smooth;
