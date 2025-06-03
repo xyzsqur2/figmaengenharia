@@ -1,0 +1,584 @@
+// Consulta SQL
+$sql = "SELECT id, ip, data FROM ip_visitantes";
+$result = $conn->query($sql);
+
+// Início da tabela com estilo CSS embutido
+echo '<div class="container mt-5">';
+echo '<style>
+        .table-container {
+            margin-top: 20px;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+        .table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .table tr:hover {
+            background-color: #ddd;
+        }
+      </style>';
+echo '<table class="table">';
+echo '<thead>';
+echo '<tr>';
+echo '<th>ID</th>';
+echo '<th>IP</th>';
+echo '<th>Data</th>';
+echo '</tr>';
+echo '</thead>';
+echo '<tbody>';
+
+// Verificar se há resultados
+if ($result->num_rows > 0) {
+    // Exibir dados de cada linha
+    while($row = $result->fetch_assoc()) {
+        echo '<tr>';
+        echo '<td>' . $row["id"] . '</td>';
+        echo '<td>' . $row["ip"] . '</td>';
+        echo '<td>' . $row["data"] . '</td>';
+        echo '</tr>';
+    }
+} else {
+    echo '<tr><td colspan="3">0 resultados</td></tr>';
+}
+
+// Fim da tabela
+echo '</tbody>';
+echo '</table>';
+echo '</div>';
+
+// Fechar conexão
+$conn->close();
+
+
+
+
+
+  <section id="features" class="features section">
+
+      <div class="container">
+
+        <ul class="nav nav-tabs row  g-2 d-flex" data-aos="fade-up" data-aos-delay="100" role="tablist">
+
+          <li class="nav-item col d-flex img-fluid" role="presentation">
+            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1" aria-selected="true"
+              role="tab">
+              <h4>Montagem</h4>
+            </a>
+          </li><!-- End tab nav item -->
+
+          <li class="nav-item col d-flex img-fluid" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2" aria-selected="false"
+              tabindex="-1" role="tab">
+              <h4>Automação</h4>
+            </a><!-- End tab nav item -->
+
+          </li>
+          <li class="nav-item col d-flex img-fluid" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3" aria-selected="false"
+              tabindex="-1" role="tab">
+              <h4>Manutenção</h4>
+            </a>
+          </li><!-- End tab nav item -->
+
+          <li class="nav-item col d-flex img-fluid" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-4" aria-selected="false"
+              tabindex="-1" role="tab">
+              <h4>Consultoria</h4>
+            </a>
+          </li><!-- End tab nav item -->
+
+        </ul>
+
+        <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="tab-pane fade active show" id="features-tab-1" role="tabpanel">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                <!-- <h3>Voluptatem dignissimos provident</h3> -->
+                <p class="text-justify">
+
+                  <!-- Collapse -->
+                <div class="accordion" id="projectAccordion">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Projeto do Quadro Elétrico
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                      data-bs-parent="#projectAccordion">
+                      <div class="accordion-body">
+                        Análise dos requisitos elétricos do projeto
+                        Seleção de componentes e dispositivos adequados
+                        dimensionamento dos barramentos, disjuntores e demais equipamentos.
+                        Elaboração de diagramas elétricos e leiaute do painel.
+                        <br><br>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Fabricação do Quadro Elétrico
+                      </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                      data-bs-parent="#projectAccordion">
+                      <div class="accordion-body">
+                        Montagem da estrutura mecânica do quadro,
+                        instalação de barramentos, disjuntores, contatores e demais componentes.
+                        Cabeamento interno utilizando fiação identificada e organizada.
+                        Pintura e acabamento final do quadro.
+                        <br><br>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Instalação e Comissionamento
+                      </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                      data-bs-parent="#projectAccordion">
+                      <div class="accordion-body">
+                        Posicionamento e fixação do quadro no local designado,
+                        conexão das alimentações elétricas de entrada e saída.
+                        Programação e configuração dos dispositivos de controle.
+                        Testes de funcionamento e colocação em operação.
+                        <br><br>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Script to initialize the collapse -->
+                <script>
+                  var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
+                  var collapseList = collapseElementList.map(function (collapseEl) {
+                    return new bootstrap.Collapse(collapseEl)
+                  })
+                </script>
+
+
+                Todos os quadros elétricos fabricados pela Figma atendem às normas técnicas vigentes, como a <b>NBR
+                  5410</b>
+
+
+
+                </p>
+
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="./public/img/montagem.jpeg" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div><!-- End tab content item -->
+
+          <div class="tab-pane fade" id="features-tab-2" role="tabpanel">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                <!-- Collapse -->
+                <div class="accordion" id="automationAccordion">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Automação de Máquinas
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                      data-bs-parent="#automationAccordion">
+                      <div class="accordion-body">
+                        <p class="text-justify">
+                          A equipe de engenharia da Figma possui ampla experiência no desenvolvimento de soluções de
+                          automação
+                          para maquinário industrial. Nossos serviços abrangem todo o ciclo de automatização, desde a
+                          análise do
+                          processo até a implementação e suporte contínuo.
+                        </p>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Análise e Diagnóstico
+                      </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                      data-bs-parent="#automationAccordion">
+                      <div class="accordion-body">
+                        Visita técnica para entendimento do processo produtivo
+                        Levantamento das necessidades de automação e controle
+                        Identificação de pontos de melhoria e oportunidades de otimização
+                        <br><br>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Projeto de Automação
+                      </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                      data-bs-parent="#automationAccordion">
+                      <div class="accordion-body">
+                        Seleção de controladores lógicos programáveis (PLCs) adequados
+                        Desenvolvimento de programação lógica e interface homem-máquina
+                        Criação de diagramas elétricos e fluxogramas do processo automatizado
+                        <br><br>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Implementação e Integração
+                      </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                      data-bs-parent="#automationAccordion">
+                      <div class="accordion-body">
+                        Fabricação de painéis elétricos de comando e controle
+                        Instalação e cabeamento dos equipamentos de automação
+                        Configuração, testes e colocação em funcionamento do sistema
+                        <br><br>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Suporte e Manutenção
+                      </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                      data-bs-parent="#automationAccordion">
+                      <div class="accordion-body">
+                        Treinamento da equipe de operação e manutenção do cliente
+                        Monitoramento remoto e manutenção preditiva do sistema
+                        Atendimento técnico e assistência em caso de eventuais problemas
+                        <br><br>
+                        Nossos serviços de automação de máquinas visam aumentar a eficiência, produtividade e
+                        confiabilidade
+                        dos processos industriais. Trabalhamos com soluções customizadas, integrando sensores,
+                        atuadores,
+                        controladores e interface homem-máquina (IHM) para obter o máximo desempenho do seu maquinário.
+                        A Figma - Automação e Controle tem orgulho de contribuir para a modernização e digitalização dos
+                        parques fabris de nossos clientes, impulsionando sua competitividade no mercado.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Script to initialize the collapse -->
+                <script>
+                  var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
+                  var collapseList = collapseElementList.map(function (collapseEl) {
+                    return new bootstrap.Collapse(collapseEl)
+                  })
+                </script>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="./public/img/features-2.jpg" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div><!-- End tab content item -->
+
+          <div class="tab-pane fade" id="features-tab-3" role="tabpanel">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                <!-- Collapse -->
+                <div class="accordion" id="maintenanceAccordion">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Manutenção Predial
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                      data-bs-parent="#maintenanceAccordion">
+                      <div class="accordion-body">
+                        <p class="text-justify">
+                          A Figma possui uma equipe especializada em fornecer soluções abrangentes de manutenção
+                          predial,
+                          visando garantir o perfeito funcionamento e a conservação dos sistemas automatizados em
+                          edifícios
+                          comerciais, industriais e residenciais.
+                          Nossos serviços de manutenção predial incluem:
+                        </p>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Manutenção Preventiva
+                      </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                      data-bs-parent="#maintenanceAccordion">
+                      <div class="accordion-body">
+                        Inspeções periódicas dos sistemas de automação
+                        Testes de funcionamento e calibração de equipamentos
+                        Limpeza e lubrificação de componentes
+                        Atualização de firmwares e softwares
+                        <br><br>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Manutenção Corretiva
+                      </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                      data-bs-parent="#maintenanceAccordion">
+                      <div class="accordion-body">
+                        Diagnóstico e reparo de falhas em sistemas automatizados
+                        Substituição de peças e componentes danificados
+                        Restabelecimento do funcionamento normal dos sistemas
+                        Análise de causas-raiz e ações para evitar reincidências
+                        <br><br>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Monitoramento Remoto
+                      </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                      data-bs-parent="#maintenanceAccordion">
+                      <div class="accordion-body">
+                        Acompanhamento em tempo real do desempenho dos sistemas
+                        Detecção precoce de problemas e alertas proativos
+                        Acesso remoto para diagnóstico e resolução de problemas
+                        Relatórios periódicos de desempenho e histórico de manutenção
+                        <br><br>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Consultoria e Projetos
+                      </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                      data-bs-parent="#maintenanceAccordion">
+                      <div class="accordion-body">
+                        Avaliação das necessidades de automação do edifício
+                        Desenvolvimento de soluções customizadas de automação predial
+                        Execução de retrofits e modernizações de sistemas existentes
+                        Assessoria técnica durante a fase de construção ou reforma
+                        <br><br>
+                        Ao contar com os serviços de manutenção da Figma, nossos clientes garantem a confiabilidade,
+                        eficiência e longevidade de seus sistemas prediais automatizados. Nosso objetivo é maximizar o
+                        desempenho e a vida útil dos equipamentos, minimizando interrupções e custos inesperados.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Script to initialize the collapse -->
+                <script>
+                  var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
+                  var collapseList = collapseElementList.map(function (collapseEl) {
+                    return new bootstrap.Collapse(collapseEl)
+                  })
+                </script>
+
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="./public/img/features-3.jpg" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div><!-- End tab content item -->
+
+          <div class="tab-pane fade" id="features-tab-4" role="tabpanel">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                <!-- Collapse -->
+                <div class="accordion" id="consultingAccordion">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Análise e Diagnóstico
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                      data-bs-parent="#consultingAccordion">
+                      <div class="accordion-body">
+                        - Avaliação completa da infraestrutura existente<br>
+                        - Identificação de pontos críticos e oportunidades de melhoria<br>
+                        - Análise de eficiência energética e operacional<br>
+                        - Levantamento de requisitos técnicos e operacionais<br>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Planejamento Estratégico
+                      </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                      data-bs-parent="#consultingAccordion">
+                      <div class="accordion-body">
+                        - Desenvolvimento de roadmap tecnológico<br>
+                        - Estudo de viabilidade técnica e financeira<br>
+                        - Elaboração de cronogramas e planos de implementação<br>
+                        - Definição de prioridades e etapas do projeto<br>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Especificações Técnicas
+                      </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                      data-bs-parent="#consultingAccordion">
+                      <div class="accordion-body">
+                        - Seleção de tecnologias e equipamentos adequados<br>
+                        - Dimensionamento de sistemas e componentes<br>
+                        - Elaboração de documentação técnica<br>
+                        - Definição de padrões e normas a serem seguidos<br>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Gestão de Projetos
+                      </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                      data-bs-parent="#consultingAccordion">
+                      <div class="accordion-body">
+                        - Acompanhamento de implementações<br>
+                        - Supervisão técnica de instalações<br>
+                        - Avaliação de fornecedores e prestadores de serviço<br>
+                        - Controle de qualidade e conformidade<br>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Benefícios de Nossa Consultoria
+                      </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                      data-bs-parent="#consultingAccordion">
+                      <div class="accordion-body">
+                        - Redução de custos operacionais<br>
+                        - Otimização de processos<br>
+                        - Aumento da eficiência energética<br>
+                        - Melhoria da produtividade<br>
+                        - Conformidade com normas técnicas<br>
+                        - Suporte técnico especializado<br>
+                        <br>
+                        Nossa equipe de consultores possui vasta experiência em:<br>
+                        - Automação industrial<br>
+                        - Automação predial<br>
+                        - Eficiência energética<br>
+                        - Sistemas de segurança<br>
+                        - Integração de sistemas<br>
+                        - Indústria 4.0<br>
+                        - IoT (Internet das Coisas)<br>
+                        <br>
+                        A Figma - Automação e Controle trabalha em parceria com seus clientes, oferecendo soluções
+                        personalizadas que atendam às suas necessidades específicas e objetivos estratégicos. Nossa
+                        abordagem consultiva visa não apenas resolver problemas imediatos, mas também preparar nossos
+                        clientes para os desafios futuros da automação e digitalização.
+                        <br><br>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingSix">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        Metodologia de Trabalho
+                      </button>
+                    </h2>
+                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                      data-bs-parent="#consultingAccordion">
+                      <div class="accordion-body">
+                        1. Reunião inicial para entendimento das necessidades<br>
+                        2. Diagnóstico detalhado da situação atual<br>
+                        3. Elaboração de proposta de solução<br>
+                        4. Apresentação de resultados esperados<br>
+                        5. Acompanhamento da implementação<br>
+                        6. Avaliação de resultados e ajustes necessários<br>
+                        <br>
+                        Com nossa consultoria, os clientes podem tomar decisões mais assertivas em seus projetos de
+                        automação,
+                        garantindo maior retorno sobre o investimento e resultados mais sustentáveis a longo prazo.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Script to initialize the collapse -->
+                <script>
+                  var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
+                  var collapseList = collapseElementList.map(function (collapseEl) {
+                    return new bootstrap.Collapse(collapseEl)
+                  })
+                </script>
+
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="./public/img/features-4.jpg" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div><!-- End tab content item -->
+
+        </div>
+
+      </div>
+
+    </section>

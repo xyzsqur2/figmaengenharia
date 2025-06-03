@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Figma - Controle e Automação</title>
+  <meta name="description" content="">
+  <script>
+    function getCookies() {
+    var cookies = document.cookie.split(';');
+    var cookieObj = {};
+    cookies.forEach(function(cookie) {
+        var parts = cookie.split('=');
+        var name = parts[0].trim();
+        var value = parts[1] ? parts[1].trim() : '';
+        cookieObj[name] = value;
+    });
+    return cookieObj;
+}
+
+// Exibir os cookies no console
+var cookies = getCookies();
+console.log(cookies);
+
+  </script>
+  <script>
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    let myIpAdress = '';
+    let largura_da_tela = '';
+    let altura_da_tela = '';
+    var dispositivo = '';
+    fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => {
+
+        myIpAdress = data.ip
+      }).then(() => {
+        function detectarDispositivo() {
+          var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+          // Verificar se é um dispositivo móvel
+          if (/android/i.test(userAgent)) {
+            return "Android";
+          }
+          if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return "iOS";
+          }
+          if (/windows phone/i.test(userAgent)) {
+            return "Windows Phone";
+          }
+          if (/Macintosh/i.test(userAgent)) {
+            return "Mac";
+          }
+          if (/Windows/i.test(userAgent)) {
+            return "Windows";
+          }
+          if (/Linux/i.test(userAgent)) {
+            return "Linux";
+          }
+
+          return "Desconhecido";
+        }
+        dispositivo = detectarDispositivo();
+
+        largura_da_tela = window.innerWidth;
+        altura_da_tela = window.innerHeight;
+
+      }).then(() => {
+        fetch('https://www.figmacontrol.com.br/ip.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ ip: myIpAdress, largura_da_tela: largura_da_tela, altura_da_tela: altura_da_tela, dispositivo: dispositivo })
+        })
+          .catch(error => {
+            console.error('Erro ao enviar IP para o servidor:', error);
+          })
+      });
+
+  </script>
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./public/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./public/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./public/img/favicon-16x16.png">
+  <link rel="icon" href="./public/img/favicon.ico" type="image/x-icon">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="./public/img/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Vendor CSS Files -->
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+  <!-- Main CSS File -->
+  <link href="./public/css/main.css" rel="stylesheet">
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function () {
+      // https://dashboard.emailjs.com/admin/account
+      emailjs.init({
+        publicKey: "Rdi7GmRS3Rb5_TOwN",
+      });
+    })();
+  </script>
+  <script type="text/javascript">
+    window.onload = function () {
+      document.getElementById('myForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        // these IDs from the previous steps
+        emailjs.sendForm('service_y5jul64', 'template_chy841b', '#myForm');
+      });
+    }
+  </script>
+</head>
+
+<body class="index-page">
+  <div class="conteiner">
+
+  </div>
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+
+        <!-- <h1 class="sitename">Figma - Automação e Controle</h1> <span>.</span> -->
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="https://figmacontrol.com.br/" class="active">Home</a></li>
+
+          <!-- <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Dropdown 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Deep Dropdown 1</a></li>
+                  <li><a href="#">Deep Dropdown 2</a></li>
+                  <li><a href="#">Deep Dropdown 3</a></li>
+                  <li><a href="#">Deep Dropdown 4</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown 2</a></li>
+              <li><a href="#">Dropdown 3</a></li>
+              <li><a href="#">Dropdown 4</a></li>
+            </ul>
+          </li> -->
+          <li><a href="https://figmacontrol.com.br/blog.html">Blog</a></li>
+
+          <!-- <li><a href="https://figmacontrol.com.br/">Politica de Privacidade</a></li> -->
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <div class="info d-flex align-items-center">
+        <div class="container">
+          <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-6 text-justify">
+              <h2 class="text-justify">Figma Engenharia</h2>
+              <p></p>
+
+            </div>
+            <div class="text-center">
+              <a href="#get-started" class="btn-get-started">Vamos lá</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <div class="carousel-item">
+          <img src="public/img/hero-carousel/hero-carousel-1.jpg" alt="">
+        </div>
+
+        <div class="carousel-item active">
+          <img src="public/img/hero-carousel/hero-carousel-2.jpg" alt="">
+        </div>
+
+
+
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- Get Started Section -->
+
+    <section id="get-started" class="get-started section">
+
+      <div class="container">
+
+        <div class="row justify-content-between gy-4">
+
+          <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
+            <div class="content text-justify">
+              <h3>Gama de cobertura de serviços.</h3>
+              <p>
+              <h4> <b>Serviços de Automação Predial</b>:</h4>
+
+
+              - Instalação e integração de sistemas de controle de acesso e segurança <br>
+              - Automação de sistemas de HVAC (Aquecimento, Ventilação e Ar-Condicionado) <br>
+              - Implementação de soluções de eficiência energética para edifícios <br>
+              - Integração de sistemas de iluminação automatizada <br>
+              - Monitoramento remoto e manutenção preditiva de equipamentos <br>
+              - Consultoria e projetos de automação para novos empreendimentos <br>
+              <br>
+              <h4> <b>Serviços de Automação Industrial:</b></h4>
+
+              - Montagem de quadros elétricos sob encomenda <br>
+              - Criação de comandos elétricos personalizados <br>
+              - Automação de máquinas e processos industriais <br>
+              - Implementação de sistemas SCADA (Supervisory Control and Data Acquisition) <br>
+              - Integração de PLCs (Controladores Lógicos Programáveis) <br>
+              - Retrofit e modernização de sistemas de automação existentes <br>
+              - Manutenção preventiva e corretiva de equipamentos automatizados <br>
+              <br>
+              Todos os serviços são realizados por uma equipe de engenheiros e técnicos altamente qualificados, com
+              foco em soluções customizadas e eficientes para cada cliente da Figma - Automação e Controle.
+
+              </p> <br>
+
+            </div>
+          </div>
+
+          <div class="col-lg-5" data-aos="zoom-out" data-aos-delay="200">
+
+            <form id="myForm" class="php-email-form">
+              <h3>Formulario para orçamentos</h3>
+              <p>Entre e contato e conte-nos mais sobre suas necessidades.</p>
+              <div class="row gy-3">
+
+                <div class="col-12">
+                  <input id="nome" type="text" name="nome" class="form-control" placeholder="Nome" required>
+                </div>
+
+                <div class="col-12 ">
+                  <input id="telefone" type="number" class="form-control" name="telefone" placeholder="telefone"
+                    required pattern="\d{11}" maxlength="11" minlength="11">
+                </div>
+
+                <div class="col-12 ">
+                  <input id="email" type="email" class="form-control" name="email" placeholder="Email" required>
+                </div>
+
+                <div class="col-12 ">
+                  <input class="form-control" type="text" id="cnpj" name="cnpj" required maxlength="18"
+                    placeholder="CNPJ 00.000.000/0000-00">
+                </div>
+                <div class="btn-group">
+
+                  <select class="form-select" id="servicosEletricos" name="servico" title="Selecione um serviço">
+
+                    <option value="instalacao_predial">Instalação Elétrica Predial</option>
+                    <option value="instalacao_industrial">Instalação Elétrica Industrial</option>
+                    <option value="manutencao_predial">Manutenção Elétrica Predial</option>
+                    <option value="manutencao_industrial">Manutenção Elétrica Industrial</option>
+                    <option value="projetos_prediais">Projetos Elétricos Prediais</option>
+                    <option value="projetos_industriais">Projetos Elétricos Industriais</option>
+                    <option value="automacao_predial">Automação Predial</option>
+                    <option value="automacao_industrial">Automação Industrial</option>
+                    <option value="montagem_quadros">Montagem de Quadros Elétricos</option>
+                    <option value="comandos_eletricos">Criação de Comandos Elétricos</option>
+                    <option value="sistemas_scada">Implementação de Sistemas SCADA</option>
+                    <option value="integracao_plc">Integração de PLCs</option>
+                    <option value="retrofit_sistemas">Retrofit de Sistemas de Automação</option>
+                    <option value="eficiencia_energetica">Soluções de Eficiência Energética</option>
+                    <option value="monitoramento_remoto">Monitoramento Remoto e Manutenção Preditiva</option>
+                    <option value="consultoria_projetos">Consultoria e Projetos de Automação</option>
+
+
+                  </select>
+                </div>
+
+
+
+                <div class="col-12">
+                  <textarea id="mensagem" class="form-control" name="mensagem" rows="6" placeholder="Deixe sua mensagem"
+                    required></textarea>
+                </div>
+
+                <p> Ao enviar este formulário, você concorda com a nossa <a href="/politica.html"
+                    target="_blank">Política de Privacidade</a> e autoriza o uso das informações fornecidas para fins de
+                  contato e processamento de sua solicitação. </p>
+
+                <div class="col-12 text-center">
+                  <div class="loading">Loading</div>
+                  <button id="button" type="submit">Enviar</button>
+                </div>
+
+              </div>
+
+            </form>
+            <script> function validarCNPJ(cnpj) { cnpj = cnpj.replace(/[^\d]+/g, ''); if (cnpj.length !== 14) return false; if (/^(\d)\1+$/.test(cnpj)) return false; let tamanho = cnpj.length - 2; let numeros = cnpj.substring(0, tamanho); let digitos = cnpj.substring(tamanho); let soma = 0; let pos = tamanho - 7; for (let i = tamanho; i >= 1; i--) { soma += numeros.charAt(tamanho - i) * pos--; if (pos < 2) pos = 9; } let resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11); if (resultado != digitos.charAt(0)) return false; tamanho = tamanho + 1; numeros = cnpj.substring(0, tamanho); soma = 0; pos = tamanho - 7; for (let i = tamanho; i >= 1; i--) { soma += numeros.charAt(tamanho - i) * pos--; if (pos < 2) pos = 9; } resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11); if (resultado != digitos.charAt(1)) return false; return true; } document.getElementById('cnpjForm').addEventListener('submit', function (event) { event.preventDefault(); const cnpj = document.getElementById('cnpj').value; if (validarCNPJ(cnpj)) { alert('CNPJ válido!'); } else { alert('CNPJ inválido. Por favor, verifique e tente novamente.'); } }); document.getElementById('cnpj').addEventListener('input', function (event) { this.value = this.value.replace(/\D/g, '').replace(/^(\d{2})(\d)/, '$1.$2').replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3').replace(/\.(\d{3})(\d)/, '.$1/$2').replace(/(\d{4})(\d)/, '$1-$2'); }); </script>
+            <script> document.getElementById('telefone').addEventListener('input', function (event) { this.value = this.value.replace(/\D/g, '').slice(0, 11); }); </script>
+            <script> document.getElementById('myForm').addEventListener('submit', function (event) { event.preventDefault(); if (confirm('Você tem certeza que deseja enviar o formulário?')) { this.submit(); } }); </script>
+
+          </div><!-- End Quote Form -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Get Started Section -->
+
+
+
+
+
+    <!-- Features Section -->
+    <section id="features" class="features section">
+
+      <div class="container">
+
+        <ul class="nav nav-tabs row  g-2 d-flex" data-aos="fade-up" data-aos-delay="100" role="tablist">
+
+          <li class="nav-item col d-flex img-fluid" role="presentation">
+            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1" aria-selected="true"
+              role="tab">
+              <h4>Montagem</h4>
+            </a>
+          </li><!-- End tab nav item -->
+
+          <li class="nav-item col d-flex img-fluid" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2" aria-selected="false"
+              tabindex="-1" role="tab">
+              <h4>Automação</h4>
+            </a><!-- End tab nav item -->
+
+          </li>
+          <li class="nav-item col d-flex img-fluid" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3" aria-selected="false"
+              tabindex="-1" role="tab">
+              <h4>Manutenção</h4>
+            </a>
+          </li><!-- End tab nav item -->
+
+          <li class="nav-item col d-flex img-fluid" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-4" aria-selected="false"
+              tabindex="-1" role="tab">
+              <h4>Consultoria</h4>
+            </a>
+          </li><!-- End tab nav item -->
+
+        </ul>
+
+        <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="tab-pane fade active show" id="features-tab-1" role="tabpanel">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                <!-- <h3>Voluptatem dignissimos provident</h3> -->
+                <p class="text-justify">
+                <h5>Montagem de Quadros Elétricos</h5> <br>
+                A Figma possui uma equipe especializada em projeto, fabricação e instalação de quadros elétricos sob
+                medida para atender às necessidades específicas de cada cliente. Nossos serviços incluem: <br>
+                <br>
+                <hr><br>
+                <h5>Projeto do Quadro Elétrico</h5> <br>
+
+                Análise dos requisitos elétricos do projeto
+                Seleção de componentes e dispositivos adequados
+                dimensionamento dos barramentos, disjuntores e demais equipamentos.
+                Elaboração de diagramas elétricos e leiaute do painel. <br>
+                <br>
+                <hr><br>
+                <h5>Fabricação do Quadro Elétrico</h5> <br>
+
+                Montagem da estrutura mecânica do quadro,
+                instalação de barramentos, disjuntores, contatores e demais componentes.
+                Cabeamento interno utilizando fiação identificada e organizada.
+                Pintura e acabamento final do quadro <br>
+                <br>
+                <hr><br>
+                <h5>Instalação e Comissionamento</h5> <br>
+
+                Posicionamento e fixação do quadro no local designado,
+                conexão das alimentações elétricas de entrada e saída.
+                Programação e configuração dos dispositivos de controle.
+                Testes de funcionamento e colocação em operação <br>
+                <br>
+                <hr><br>
+                Todos os quadros elétricos fabricados pela Figma atendem às normas técnicas vigentes, como a <b>NBR
+                  5410</b>
+
+
+
+                </p>
+
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="./public/img/montagem.jpeg" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div><!-- End tab content item -->
+
+          <div class="tab-pane fade" id="features-tab-2" role="tabpanel">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                <h5>Automação de Maquinas</h5> <br>
+                <p class="text-justify">
+                  A equipe de engenharia da Figma possui ampla experiência no desenvolvimento de soluções de automação
+                  para maquinário industrial. Nossos serviços abrangem todo o ciclo de automatização, desde a análise do
+                  processo até a implementação e suporte contínuo.
+                  <br>
+                  <hr><br>
+
+                <h5>Análise e Diagnóstico</h5> <br>
+
+                Visita técnica para entendimento do processo produtivo
+                Levantamento das necessidades de automação e controle
+                Identificação de pontos de melhoria e oportunidades de otimização
+                <br>
+                <br>
+                <hr><br>
+                <h5>Projeto de Automação</h5> <br>
+
+                Seleção de controladores lógicos programáveis (PLCs) adequados
+                Desenvolvimento de programação lógica e interface homem-máquina
+                Criação de diagramas elétricos e fluxogramas do processo automatizado
+                <br>
+                <hr><br>
+                <h5>Implementação e Integração</h5><br>
+
+                Fabricação de painéis elétricos de comando e controle
+                Instalação e cabeamento dos equipamentos de automação
+                Configuração, testes e colocação em funcionamento do sistema
+                <br>
+                <hr><br>
+                <h5>Suporte e Manutenção</h5><br>
+
+                Treinamento da equipe de operação e manutenção do cliente
+                Monitoramento remoto e manutenção preditiva do sistema
+                Atendimento técnico e assistência em caso de eventuais problemas
+                <br>
+                <hr><br>
+                Nossos serviços de automação de máquinas visam aumentar a eficiência, produtividade e confiabilidade
+                dos processos industriais. <br><br> Trabalhamos com soluções customizadas, integrando sensores,
+                atuadores,
+                controladores e interface homem-máquina (IHM) para obter o máximo desempenho do seu maquinário. <br><br>
+                A Figma - Automação e Controle tem orgulho de contribuir para a modernização e digitalização dos
+                parques fabris de nossos clientes, impulsionando sua competitividade no mercado.
+                </p>
+
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="./public/img/features-2.jpg" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div><!-- End tab content item -->
+
+          <div class="tab-pane fade" id="features-tab-3" role="tabpanel">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+
+                <h5>Manutenção Predial</h5> <br>
+                <p class="text-justify">
+
+                  Manutenção Predial
+                  A Figma possui uma equipe especializada em fornecer soluções abrangentes de manutenção predial,
+                  visando garantir o perfeito funcionamento e a conservação dos sistemas automatizados em edifícios
+                  comerciais, industriais e residenciais.
+                  Nossos serviços de manutenção predial incluem:
+                  <br>
+                  <hr><br>
+                <h5>Manutenção Preventiva</h5> <br>
+
+                Inspeções periódicas dos sistemas de automação
+                Testes de funcionamento e calibração de equipamentos
+                Limpeza e lubrificação de componentes
+                Atualização de firmwares e softwares
+                <br><br>
+                <hr><br>
+                <h5>Manutenção Corretiva</h5> <br>
+
+                Diagnóstico e reparo de falhas em sistemas automatizados
+                Substituição de peças e componentes danificados
+                Restabelecimento do funcionamento normal dos sistemas
+                Análise de causas-raiz e ações para evitar reincidências
+                <br><br>
+                <hr><br>
+                <h5>Monitoramento Remoto</h5> <br>
+
+                Acompanhamento em tempo real do desempenho dos sistemas
+                Detecção precoce de problemas e alertas proativos
+                Acesso remoto para diagnóstico e resolução de problemas
+                Relatórios periódicos de desempenho e histórico de manutenção
+                <br><br>
+                <hr><br>
+                <h5>Consultoria e Projetos</h5> <br>
+
+                Avaliação das necessidades de automação do edifício
+                Desenvolvimento de soluções customizadas de automação predial
+                Execução de retrofits e modernizações de sistemas existentes
+                Assessoria técnica durante a fase de construção ou reforma
+                <br><br>
+
+                Ao contar com os serviços de manutenção da Figma, nossos clientes garantem a confiabilidade,
+                eficiência e longevidade de seus sistemas prediais automatizados. Nosso objetivo é maximizar o
+                desempenho e a vida útil dos equipamentos, minimizando interrupções e custos inesperados.
+                </p>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="./public/img/features-3.jpg" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div><!-- End tab content item -->
+
+          <div class="tab-pane fade" id="features-tab-4" role="tabpanel">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+
+                <p>
+
+                  Análise e Diagnóstico: <br>
+                  - Avaliação completa da infraestrutura existente<br>
+                  - Identificação de pontos críticos e oportunidades de melhoria<br>
+                  - Análise de eficiência energética e operacional<br>
+                  - Levantamento de requisitos técnicos e operacionais<br>
+                  <br>
+                  Planejamento Estratégico:<br>
+                  - Desenvolvimento de roadmap tecnológico<br>
+                  - Estudo de viabilidade técnica e financeira<br>
+                  - Elaboração de cronogramas e planos de implementação<br>
+                  - Definição de prioridades e etapas do projeto<br>
+                  <br>
+                  Especificações Técnicas:<br>
+                  - Seleção de tecnologias e equipamentos adequados<br>
+                  - Dimensionamento de sistemas e componentes<br>
+                  - Elaboração de documentação técnica<br>
+                  - Definição de padrões e normas a serem seguidos<br>
+                  <br>
+                  Gestão de Projetos:<br>
+                  - Acompanhamento de implementações<br>
+                  - Supervisão técnica de instalações<br>
+                  - Avaliação de fornecedores e prestadores de serviço<br>
+                  - Controle de qualidade e conformidade<br>
+                  <br>
+                  Benefícios de Nossa Consultoria:<br>
+                  - Redução de custos operacionais<br>
+                  - Otimização de processos<br>
+                  - Aumento da eficiência energética<br>
+                  - Melhoria da produtividade<br>
+                  - Conformidade com normas técnicas<br>
+                  - Suporte técnico especializado<br>
+                  <br>
+                  Nossa equipe de consultores possui vasta experiência em:<br>
+                  - Automação industrial<br>
+                  - Automação predial<br>
+                  - Eficiência energética<br>
+                  - Sistemas de segurança<br>
+                  - Integração de sistemas<br>
+                  - Indústria 4.0<br>
+                  - IoT (Internet das Coisas)<br>
+                  <br>
+                  A Figma - Automação e Controle trabalha em parceria com seus clientes, oferecendo soluções<br>
+                  personalizadas que atendam às suas necessidades específicas e objetivos estratégicos. Nossa
+                  abordagem<br>
+                  consultiva visa não apenas resolver problemas imediatos, mas também preparar nossos clientes para os
+                  desafios futuros da automação e digitalização.<br>
+                  <br>
+                  Metodologia de Trabalho:<br>
+                  1. Reunião inicial para entendimento das necessidades<br>
+                  2. Diagnóstico detalhado da situação atual<br>
+                  3. Elaboração de proposta de solução<br>
+                  4. Apresentação de resultados esperados<br>
+                  5. Acompanhamento da implementação<br>
+                  6. Avaliação de resultados e ajustes necessários<br>
+
+                  Com nossa consultoria, os clientes podem tomar decisões mais assertivas em seus projetos de automação,
+                  garantindo maior retorno sobre o investimento e resultados mais sustentáveis a longo prazo.
+                </p>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="./public/img/features-4.jpg" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div><!-- End tab content item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Features Section -->
+
+    <!-- Projects Section -->
+    </div>
+  </main>
+ 
+ 
+
+
+  <footer id="footer" class="footer dark-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+
+            <span class="sitename">Figma Engenharia</span>
+          </a>
+          <div class="footer-contact pt-3">
+
+            <p><strong>Phone:</strong> <i class="fa-brands fa-whatsapp"></i> <span>fale com um técnico agora<a
+                  href="http://wa.me/5511970777140" target="_blank"> - click aqui -</a></span></p>
+            <p><strong>Email:</strong> <span>contato@figmacontrol.com.br</span></p>
+            <p><strong>CNPJ:</strong> <span>58.046.687/0001-86</span></p>
+            <p><strong>TRABALHE CONOSCO: Envie seu curriculo para <a
+                  href="mailto:contato@figmacontrol.com.br">contato@figmacontrol.com.br</a></strong></p>
+                  <div class="social-links d-flex mt-4">
+                    <a href=""><i class="bi bi-twitter-x"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
+                  </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Figma Engenharia</strong> <span>Todos os
+          direitos reservados</span>
+      </p>
+
+    </div>
+    
+<a class="fa fa-whatsapp" title="WhatsApp" href="whatsapp://send?text=Seu site aqui" target="_blank"></i></a>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+  <!-- Main JS File -->
+  <script src="./public/js/main.js"></script>
+ 
+</body>
+
+</html>

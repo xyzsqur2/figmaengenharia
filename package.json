@@ -1,0 +1,19 @@
+{
+  "name": "figmaengenharia",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'Nenhum build necessário para HTML/CSS/JS puro.'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CarlosLacerdaSantos/figmaengenharia.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CarlosLacerdaSantos/figmaengenharia/issues"
+  },
+  "homepage": "https://github.com/CarlosLacerdaSantos/figmaengenharia#readme",
+  "description": ""
+}

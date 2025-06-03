@@ -1,3 +1,4 @@
+
 :root {
   --default-font: "Open Sans",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --heading-font: "Roboto",  sans-serif;
@@ -31,21 +32,84 @@
 }
 
 .dark-background {
-  --background-color: #000000;
+  --background-color: #060606;
   --default-color: #ffffff;
   --heading-color: #ffffff;
   --surface-color: #252525;
   --contrast-color: #ffffff;
 }
 
-/* Efeito de LEDs e fórmulas matemáticas removidos */
-.hero::before,
-.hero::after,
-.hero .info::before,
-.hero .info::after {
-  content: none !important;
-  animation: none !important;
-  background: none !important;
+/* Efeito de LEDs */
+@keyframes ledPulse {
+  0% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0.3; transform: scale(1); }
+}
+
+.hero::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle at 10% 10%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 30% 20%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 50% 15%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 70% 25%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 90% 10%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 20% 40%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 40% 50%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 60% 45%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 80% 55%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 15% 75%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 35% 85%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 55% 80%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 75% 90%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 95% 85%, var(--accent-color) 2px, transparent 2px);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.hero::before {
+  animation: ledPulse1 2s infinite;
+}
+
+.hero::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle at 25% 15%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 45% 25%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 65% 20%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 85% 30%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 30% 60%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 50% 65%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 70% 70%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 25% 95%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 45% 90%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 65% 95%, var(--accent-color) 2px, transparent 2px),
+              radial-gradient(circle at 85% 85%, var(--accent-color) 2px, transparent 2px);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  animation: ledPulse2 2.5s infinite;
+}
+
+@keyframes ledPulse1 {
+  0% { opacity: 0.3; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-5px); }
+  100% { opacity: 0.3; transform: translateY(0); }
+}
+
+@keyframes ledPulse2 {
+  0% { opacity: 0.3; transform: translateX(0); }
+  50% { opacity: 1; transform: translateX(5px); }
+  100% { opacity: 0.3; transform: translateX(0); }
 }
 
 /* Fórmulas matemáticas */
